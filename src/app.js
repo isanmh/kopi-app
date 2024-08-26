@@ -4,13 +4,13 @@ document.addEventListener("alpine:init", () => {
       {
         id: 1,
         title: "Coffee Robusta",
-        image: "https://coffee.alexflipnote.dev/random",
+        image: "1.jpg",
         price: 25000,
       },
       {
         id: 2,
         title: "Coffee Arabica",
-        image: "https://coffee.alexflipnote.dev/random",
+        image: "1.jpg",
         price: 30000,
       },
     ],
