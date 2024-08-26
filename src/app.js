@@ -3,13 +3,13 @@ document.addEventListener("alpine:init", () => {
     items: [
       {
         id: 1,
-        title: "Coffee Robusta",
+        name: "Coffee Robusta",
         image: "1.jpg",
         price: 25000,
       },
       {
         id: 2,
-        title: "Coffee Arabica",
+        name: "Coffee Arabica",
         image: "1.jpg",
         price: 30000,
       },
