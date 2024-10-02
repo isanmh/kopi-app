@@ -78,3 +78,51 @@ const rupiah = (price) => {
     minimumFractionDigits: 0,
   }).format(price);
 };
+
+// button hidden
+const checkoutButton = document.querySelector(".checkout-button");
+const form = document.querySelector("#checkoutForm");
+
+// form validation
+checkoutButton.disabled = true;
+
+form.addEventListener("keyup", function () {
+  for (let i = 0; i < form.elements.length; i++) {
+    if (form.elements[i].value.length !== 0) {
+      checkoutButton.classList.remove("disabled");
+      checkoutButton.classList.add("disabled");
+    } else {
+      return false;
+    }
+  }
+  checkoutButton.disabled = false;
+  checkoutButton.classList.remove("disabled");
+});
+
+// kirim data ketika tombol add to cart di klik
+checkoutButton.addEventListener("click", async function (e) {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const data = new URLSearchParams(formData);
+  const objData = Object.fromEntries(data);
+  console.log(objData);
+  const message = formatMessage(objData);
+  window.open(
+    `http://wa.me/6282233505516?text=${encodeURIComponent(message)}`,
+    "_blank"
+  );
+});
+
+// format message WA
+const formatMessage = (obj) => {
+  return `Data Customer
+  Nama: ${obj.name}
+  Email: ${obj.email}
+  No. HP: ${obj.phone}
+Data Pesanan: 
+${JSON.parse(obj.items).map(
+  (item) => `${item.name} (${item.quantity} x ${rupiah(item.total)}) \n`
+)}
+Total: ${rupiah(obj.total)}`;
+};
